@@ -1,0 +1,3 @@
+# Tests and linting. The unit tests do not need faster-whisper or a model.
+pytest>=7
+ruff>=0.5

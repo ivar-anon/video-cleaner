@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "video-cleaner"
+dynamic = ["version"]
+description = "Remove long silences and repeated takes from talking-head videos."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.9"
+dependencies = ["faster-whisper>=1.0"]
+keywords = ["video", "editing", "ffmpeg", "whisper", "silence", "jump-cut"]
+classifiers = [
+    "Environment :: Console",
+    "Programming Language :: Python :: 3",
+    "Topic :: Multimedia :: Video",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.scripts]
+video-cleaner = "video_cleaner.cli:main"
+
+[tool.setuptools]
+packages = ["video_cleaner"]
+
+[tool.setuptools.dynamic]
+version = { attr = "video_cleaner.__version__" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF"]
+ignore = ["SIM905"]  # "a b c".split() reads better than a list literal in tests
+
+[tool.ruff.lint.isort]
+known-first-party = ["video_cleaner", "fakes"]

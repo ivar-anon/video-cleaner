@@ -1,0 +1,2 @@
+# Runtime dependencies. ffmpeg and ffprobe must also be on PATH (tested with 6.1).
+faster-whisper>=1.0
